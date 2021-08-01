@@ -37,7 +37,8 @@ class App:
         self.path.set(file_path)
 
     def get_img(self):
-        _path = askopenfilename()
+        _path = askopenfilename(
+            filetypes=[("files", "*.gif"), ("files", "*.bmp"), ("files", "*.png"), ("files", "*.jpg")])
         self.img_path.set(_path)
 
     def gen(self):
@@ -48,7 +49,7 @@ class App:
         try:
             myqr.run(word, version=3, save_name=save_name, save_dir=save_dir, picture=pic, colorized=True)
             messagebox.showinfo(title="成功", message="二维码已生成")
-        except:
+        except Exception as e:
             if word:
                 messagebox.showinfo(title="错误", message="暂不支持中文")
             else:
